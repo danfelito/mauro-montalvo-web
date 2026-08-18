@@ -2,9 +2,8 @@
 set -euo pipefail
 
 rm -rf dist
-mkdir -p dist/assets
+mkdir -p dist
 
-# Restore the reviewed original page.
 cat source/index.parts/part*.b64 | base64 -d | gzip -dc > dist/index.html
 EXPECTED_SHA256="1d16cc8392222c60b3da946eb199885516cedff640776967fa5c86220cb9356f"
 ACTUAL_SHA256="$(sha256sum dist/index.html | awk '{print $1}')"
@@ -13,14 +12,6 @@ if [[ "$ACTUAL_SHA256" != "$EXPECTED_SHA256" ]]; then
   exit 1
 fi
 
-# Existing website assets.
-cp -R assets/. dist/assets/
-
-# Rebuild the approved branding assets committed as text-safe base64 chunks.
-cat source/assets/logo/part*.b64 | base64 -d > dist/assets/logo-gestion.webp
-cat source/assets/mauro2/part*.b64 | base64 -d > dist/assets/mauro-traje.webp
-
-# Apply and verify the requested logo + Mauro suit-image substitutions.
-python3 apply_branding.py
-
-printf 'Static site built with verified logo and Mauro suit image\n'
+python3 transform_site.py dist/index.html
+cp -R assets dist/assets
+printf 'Static site built with Gestión Administrativa branding and Mauro portrait\n'
