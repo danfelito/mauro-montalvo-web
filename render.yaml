@@ -2,6 +2,6 @@ services:
   - type: web
     runtime: static
     name: mauro-montalvo-web
-    buildCommand: echo "Static site - no build required"
-    staticPublishPath: .
+    buildCommand: bash build_static.sh
+    staticPublishPath: ./dist
     autoDeployTrigger: commit
