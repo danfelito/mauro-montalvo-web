@@ -29,9 +29,14 @@ tailwind.config = {
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; color: #0f172a; background: #ffffff; }
   .font-serif { font-family: 'Playfair Display', serif; }
+  
+  /* Hero overlay */
   .hero-overlay { background: linear-gradient(115deg, rgba(6,20,40,0.92) 0%, rgba(10,31,56,0.75) 45%, rgba(10,31,56,0.35) 100%); }
+  
+  /* Animations */
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
+  
   .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .stagger.visible > * { opacity: 1; transform: translateY(0); }
   .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
@@ -42,75 +47,1121 @@ tailwind.config = {
   .stagger.visible > *:nth-child(6) { transition-delay: 0.40s; }
   .stagger.visible > *:nth-child(7) { transition-delay: 0.47s; }
   .stagger.visible > *:nth-child(8) { transition-delay: 0.54s; }
+  
+  /* Buttons */
   .btn-primary { background: #c9a961; color: #061428; transition: all 0.3s ease; }
   .btn-primary:hover { background: #e0c07a; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,169,97,0.35); }
   .btn-outline { border: 1.5px solid rgba(255,255,255,0.5); color: #fff; transition: all 0.3s ease; }
   .btn-outline:hover { background: #fff; color: #061428; border-color: #fff; }
   .btn-navy { background: #0f2744; color: #fff; transition: all 0.3s ease; }
   .btn-navy:hover { background: #1a3a5c; transform: translateY(-2px); }
+  
+  /* Cards */
   .card-hover { transition: all 0.4s ease; }
   .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(10,31,56,0.12); }
+  
+  /* Timeline */
   .timeline-line { background: linear-gradient(180deg, #c9a961 0%, #1a3a5c 100%); }
+  
+  /* Portal */
   .portal-card { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
   .status-dot { animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  
+  /* Form */
   .form-input { transition: all 0.3s ease; }
   .form-input:focus { border-color: #c9a961; box-shadow: 0 0 0 3px rgba(201,169,97,0.15); outline: none; }
+  
+  /* WhatsApp floating */
   .wa-float { animation: float 3s ease-in-out infinite; }
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  
+  /* Modal */
   .modal-backdrop { background: rgba(6,20,40,0.7); backdrop-filter: blur(8px); }
+  
+  /* Nav */
   .nav-scrolled { background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(10,31,56,0.08); }
   .nav-scrolled .nav-link { color: #0f2744 !important; }
   .nav-scrolled .nav-logo { color: #0f2744 !important; }
+  
+  /* Problem cards */
   .problem-card { border-left: 3px solid transparent; transition: all 0.3s ease; }
   .problem-card:hover { border-left-color: #c9a961; background: #f0f4fa; }
+  
+  /* Pricing */
   .pricing-featured { border: 2px solid #c9a961; }
+  
+  /* Scrollbar */
   ::-webkit-scrollbar { width: 10px; }
   ::-webkit-scrollbar-track { background: #f1f5f9; }
   ::-webkit-scrollbar-thumb { background: #1a3a5c; border-radius: 5px; }
+  
+  /* Marquee */
   .marquee { display: flex; animation: scroll 30s linear infinite; }
   @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 </style>
 </head>
 <body class="antialiased">
+
+<!-- NAVBAR -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
   <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
     <a href="#hero" class="nav-logo flex items-center gap-3 text-white transition-colors">
       <div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>
-      <div class="leading-tight"><div class="font-serif font-bold text-lg tracking-wide">Mauro J. Montalvo</div><div class="text-xs tracking-[0.2em] uppercase opacity-80">Representación Empresarial · Veracruz</div></div>
+      <div class="leading-tight">
+        <div class="font-serif font-bold text-lg tracking-wide">Mauro J. Montalvo</div>
+        <div class="text-xs tracking-[0.2em] uppercase opacity-80">Representación Empresarial · Veracruz</div>
+      </div>
     </a>
     <div class="hidden lg:flex items-center gap-8">
-      <a href="#problema" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Problema</a><a href="#servicios" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Servicios</a><a href="#como-funciona" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Cómo trabajamos</a><a href="#perfil" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Perfil</a><a href="#casos" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Casos</a><a href="#modalidades" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Modalidades</a><a href="#portal" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Portal</a><a href="#contacto" class="btn-primary px-5 py-2.5 rounded-lg text-sm font-semibold">Contacto</a>
+      <a href="#problema" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Problema</a>
+      <a href="#servicios" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Servicios</a>
+      <a href="#como-funciona" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Cómo trabajamos</a>
+      <a href="#perfil" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Perfil</a>
+      <a href="#casos" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Casos</a>
+      <a href="#modalidades" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Modalidades</a>
+      <a href="#portal" class="nav-link text-white/90 hover:text-white text-sm font-medium transition">Portal</a>
+      <a href="#contacto" class="btn-primary px-5 py-2.5 rounded-lg text-sm font-semibold">Contacto</a>
     </div>
-    <button id="menuBtn" class="lg:hidden text-white nav-logo"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button id="menuBtn" class="lg:hidden text-white nav-logo">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
-  <div id="mobileMenu" class="lg:hidden hidden bg-navy-950/98 backdrop-blur-xl border-t border-white/10"><div class="px-6 py-6 flex flex-col gap-4"><a href="#problema" class="text-white/90 py-2">Problema</a><a href="#servicios" class="text-white/90 py-2">Servicios</a><a href="#como-funciona" class="text-white/90 py-2">Cómo trabajamos</a><a href="#perfil" class="text-white/90 py-2">Perfil</a><a href="#casos" class="text-white/90 py-2">Casos</a><a href="#modalidades" class="text-white/90 py-2">Modalidades</a><a href="#portal" class="text-white/90 py-2">Portal</a><a href="#contacto" class="btn-primary text-center px-5 py-3 rounded-lg font-semibold">Contacto</a></div></div>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-navy-950/98 backdrop-blur-xl border-t border-white/10">
+    <div class="px-6 py-6 flex flex-col gap-4">
+      <a href="#problema" class="text-white/90 py-2">Problema</a>
+      <a href="#servicios" class="text-white/90 py-2">Servicios</a>
+      <a href="#como-funciona" class="text-white/90 py-2">Cómo trabajamos</a>
+      <a href="#perfil" class="text-white/90 py-2">Perfil</a>
+      <a href="#casos" class="text-white/90 py-2">Casos</a>
+      <a href="#modalidades" class="text-white/90 py-2">Modalidades</a>
+      <a href="#portal" class="text-white/90 py-2">Portal</a>
+      <a href="#contacto" class="btn-primary text-center px-5 py-3 rounded-lg font-semibold">Contacto</a>
+    </div>
+  </div>
 </nav>
-<section id="hero" class="relative min-h-screen flex items-center overflow-hidden"><div class="absolute inset-0"><img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1ff62509b-be8e-43d1-81c2-297cc9e6f6e0.png" alt="Puerto de Veracruz" class="w-full h-full object-cover"><div class="hero-overlay absolute inset-0"></div></div><div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32 lg:py-40 w-full"><div class="max-w-3xl"><div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-8"><span class="w-2 h-2 rounded-full bg-gold status-dot"></span><span class="text-white/90 text-sm tracking-wide">Presencia Empresarial en Veracruz</span></div><h1 class="font-serif text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6">Su empresa en Veracruz,<br><span class="text-gold italic">sin necesidad de estar</span> en Veracruz.</h1><p class="text-white/85 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">Representación empresarial, gestión administrativa y seguimiento presencial para empresas nacionales y latinoamericanas.</p><div class="flex flex-col sm:flex-row gap-4 mb-12"><a href="#contacto" class="btn-primary px-8 py-4 rounded-lg font-semibold text-center">Solicitar orientación inicial</a><a href="#whatsapp" class="btn-outline px-8 py-4 rounded-lg font-semibold text-center">Hablar por WhatsApp</a></div><div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-white/70 text-sm"><span>✓ Respuesta en 24 horas</span><span>✓ Evidencia documentada</span><span>✓ Portal de seguimiento</span></div></div></div></section>
-<section class="bg-navy-950 py-6 border-y border-white/10 overflow-hidden"><div class="marquee whitespace-nowrap"><div class="flex items-center gap-12 px-6 text-white/50 text-sm tracking-[0.2em] uppercase"><span>Representación Local</span><span class="text-gold">✦</span><span>Gestión Administrativa</span><span class="text-gold">✦</span><span>Coordinación Institucional</span><span class="text-gold">✦</span><span>Seguimiento Operativo</span><span class="text-gold">✦</span><span>Verificación Presencial</span><span class="text-gold">✦</span><span>Resolución de Incidencias</span><span class="text-gold">✦</span><span>Apertura Empresarial</span><span class="text-gold">✦</span><span>Coordinación de Proveedores</span></div><div class="flex items-center gap-12 px-6 text-white/50 text-sm tracking-[0.2em] uppercase"><span>Representación Local</span><span class="text-gold">✦</span><span>Gestión Administrativa</span><span class="text-gold">✦</span><span>Coordinación Institucional</span><span class="text-gold">✦</span><span>Seguimiento Operativo</span><span class="text-gold">✦</span><span>Verificación Presencial</span><span class="text-gold">✦</span><span>Resolución de Incidencias</span><span class="text-gold">✦</span><span>Apertura Empresarial</span><span class="text-gold">✦</span><span>Coordinación de Proveedores</span></div></div></section>
-<section id="problema" class="py-24 lg:py-32 bg-steel-50"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="max-w-3xl mb-16 fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">El problema</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">¿Su empresa necesita resolver algo en Veracruz pero no tiene personal aquí?</h2><p class="text-steel-600 text-lg leading-relaxed">Cada día sin atención local es un día de retraso. Identifique su situación:</p></div><div class="grid md:grid-cols-2 gap-4 stagger">
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Tiene documentos que requieren seguimiento en Veracruz?</h3><p class="text-steel-500 text-sm">Trámites detenidos, solicitudes sin respuesta, expedientes que avanzan lentamente.</p></div>
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Necesita que alguien asista presencialmente en representación de su empresa?</h3><p class="text-steel-500 text-sm">Reuniones, juntas, presentaciones ante autoridades o socios comerciales.</p></div>
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Necesita verificar que un proveedor realizó un trabajo?</h3><p class="text-steel-500 text-sm">Inspección, supervisión y validación de servicios contratados.</p></div>
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Necesita obtener información y evidencias sin enviar personal?</h3><p class="text-steel-500 text-sm">Reportes, fotografías, documentos y avances en tiempo real.</p></div>
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Tiene un asunto administrativo detenido?</h3><p class="text-steel-500 text-sm">Procesos que requieren empuje, seguimiento y gestión presencial.</p></div>
-<div class="problem-card bg-white p-6 rounded-xl shadow-sm"><h3 class="font-semibold text-navy-900 mb-1">¿Requiere presencia temporal antes de establecer una oficina?</h3><p class="text-steel-500 text-sm">Representación inicial mientras estructura su operación en Veracruz.</p></div></div><div class="mt-12 p-8 bg-navy-900 rounded-2xl text-center fade-up"><h3 class="font-serif text-white text-3xl md:text-4xl font-bold mb-3">Nosotros nos encargamos localmente.</h3><p class="text-white/70 max-w-2xl mx-auto">Representación empresarial, gestión administrativa y seguimiento presencial con trazabilidad documentada.</p></div></div></section>
-<section class="py-24 lg:py-32 bg-white relative overflow-hidden"><div class="absolute top-0 right-0 w-1/3 h-full opacity-10"><img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1c0a33403-b0d5-4784-b205-dd2b73188244.png" class="w-full h-full object-cover"></div><div class="max-w-7xl mx-auto px-6 lg:px-10 relative"><div class="grid lg:grid-cols-2 gap-16 items-center"><div class="fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">La solución</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">Representación empresarial local con trazabilidad.</h2><p class="text-steel-600 text-lg leading-relaxed mb-6">Actuamos como el <strong class="text-navy-900">enlace local de confianza</strong> de su empresa: damos seguimiento a trámites, coordinamos proveedores, asistimos a reuniones, verificamos situaciones presencialmente, obtenemos información, documentamos avances y resolvemos asuntos administrativos u operativos.</p><p class="text-steel-600 text-lg leading-relaxed mb-8">Nuestra propuesta de valor no consiste solamente en "hacer trámites", sino en proporcionar a la empresa <strong class="text-navy-900">presencia, seguimiento, información y capacidad de respuesta</strong> en Veracruz.</p></div><div class="relative fade-up"><div class="relative rounded-2xl overflow-hidden shadow-2xl"><img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1af5d26b1-b565-4604-a34a-93dac1048264.png" class="w-full h-[500px] object-cover"><div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-950/90 to-transparent p-8"><div class="text-gold font-serif text-xl italic mb-1">"Sus ojos, sus manos y su voz en Veracruz."</div><div class="text-white/70 text-sm">Concepto de marca</div></div></div></div></div></div></section>
-<section id="servicios" class="py-24 lg:py-32 bg-navy-950 text-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="max-w-3xl mb-16 fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Servicios</div><h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6">Soluciones concretas para cada necesidad empresarial.</h2><p class="text-white/70 text-lg">No vendemos "horas de Mauro". Vendemos servicios definidos con alcance, entregables y evidencias.</p></div><div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
-<div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Representación Empresarial Local</h3><p class="text-white/65 text-sm">Presencia y representación de la empresa en Veracruz ante terceros, autoridades y socios.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Gestión Administrativa Empresarial</h3><p class="text-white/65 text-sm">Seguimiento documental, solicitudes, trámites y coordinación institucional.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Seguimiento Presencial</h3><p class="text-white/65 text-sm">Visitas, verificaciones, recopilación de documentos, fotografías y evidencias.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Coordinación de Proveedores</h3><p class="text-white/65 text-sm">Contacto, citas, cotizaciones, supervisión y seguimiento de proveedores locales.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Representación en Reuniones</h3><p class="text-white/65 text-sm">Participación en representación de la empresa con minuta e informe posterior.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Resolución de Incidencias Locales</h3><p class="text-white/65 text-sm">Atención de situaciones que requieren intervención presencial inmediata.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Investigación y Verificación Local</h3><p class="text-white/65 text-sm">Obtención y validación de información comercial u operativa en terreno.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-7 card-hover"><h3 class="font-serif text-xl font-bold mb-3">Apertura Empresarial en Veracruz</h3><p class="text-white/65 text-sm">Apoyo inicial para empresas que comienzan operaciones en la región.</p></div></div></div></section>
-<section id="como-funciona" class="py-24 lg:py-32 bg-steel-50"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="max-w-3xl mb-16 fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Cómo trabajamos</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6">Un proceso claro, documentado y trazable.</h2><p class="text-steel-600 text-lg">Seis pasos que reducen la incertidumbre y garantizan que usted reciba información en tiempo y forma.</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger"><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">01 · Cuéntenos qué necesita resolver</h3><p class="text-steel-500 text-sm">Formulario, WhatsApp o videollamada. Recibimos su caso estructurado.</p></div><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">02 · Analizamos el caso</h3><p class="text-steel-500 text-sm">Evaluamos alcance, viabilidad y recursos necesarios para atender su solicitud.</p></div><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">03 · Definimos alcance y honorarios</h3><p class="text-steel-500 text-sm">Propuesta clara con entregables, tiempos y costos.</p></div><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">04 · Mauro actúa localmente</h3><p class="text-steel-500 text-sm">Visitas, reuniones, coordinaciones y gestiones en terreno.</p></div><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">05 · Recibe evidencia y seguimiento</h3><p class="text-steel-500 text-sm">Fotografías, documentos, reportes y actualizaciones.</p></div><div class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-gold"><h3 class="font-serif text-xl font-bold text-navy-900">06 · Cerramos y documentamos</h3><p class="text-steel-500 text-sm">Informe final, expediente completo y recomendaciones.</p></div></div></div></section>
-<section id="perfil" class="py-24 lg:py-32 bg-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="grid lg:grid-cols-5 gap-12 items-center"><div class="lg:col-span-2 fade-up"><img src="assets/mauro-1.webp" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover" alt="Mauro J. Montalvo"></div><div class="lg:col-span-3 fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Perfil profesional</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6">Trayectoria administrativa e institucional al servicio de su empresa.</h2><p class="text-steel-600 text-lg leading-relaxed mb-6">Profesional especializado en representación local, gestión administrativa, coordinación institucional y seguimiento operativo para empresas nacionales y latinoamericanas que requieren presencia en Veracruz sin necesidad de establecer inicialmente una estructura administrativa propia.</p><p class="text-steel-600 text-lg leading-relaxed mb-8">Su función es actuar como <strong class="text-navy-900">enlace local de confianza</strong> de la empresa: dar seguimiento a trámites, coordinar proveedores y servicios, asistir o representar en reuniones, verificar situaciones presencialmente, obtener información, documentar avances y resolver asuntos administrativos u operativos que requieren presencia física y conocimiento del entorno local.</p><div class="grid grid-cols-2 gap-4"><div class="bg-navy-50 p-5 rounded-xl"><div class="font-serif text-3xl font-bold text-navy-900">15+</div><div class="text-steel-600 text-sm">Años de experiencia administrativa e institucional</div></div><div class="bg-navy-50 p-5 rounded-xl"><div class="font-serif text-3xl font-bold text-navy-900">100%</div><div class="text-steel-600 text-sm">Enfoque en representación empresarial local</div></div></div></div></div></div></section>
-<section class="py-24 lg:py-32 bg-navy-950 text-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="grid lg:grid-cols-2 gap-12 items-center"><div class="fade-up"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Evidencias y seguimiento</div><h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6">Cada visita produce evidencia. Cada gestión genera trazabilidad.</h2><p class="text-white/70 text-lg">Desde su teléfono registramos llegada, fotografías, documentos, comentarios, personas contactadas, resultados y próximos pasos.</p></div><div class="bg-white rounded-2xl p-6 shadow-2xl text-navy-900"><div class="font-serif text-xl font-bold mb-4">Proyecto: Seguimiento Veracruz</div><div class="grid grid-cols-2 gap-3 text-sm"><div>Responsable: <strong>Mauro Montalvo</strong></div><div>Estado: <strong>En proceso</strong></div><div>Documentos: <strong>7</strong></div><div>Evidencias: <strong>14</strong></div></div></div></div></div></section>
-<section id="modalidades" class="py-24 lg:py-32 bg-steel-50"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="max-w-3xl mb-16"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Modalidades de contratación</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold">Tres formas de trabajar, según su necesidad.</h2></div><div class="grid md:grid-cols-3 gap-6"><div class="bg-white rounded-2xl p-8 shadow-sm"><h3 class="font-serif text-2xl font-bold text-navy-900">Servicio puntual</h3><p class="text-steel-600 text-sm my-4">Para una necesidad determinada. Se cotiza como proyecto específico.</p><a href="#contacto" class="btn-navy block text-center px-6 py-3 rounded-lg">Cotizar proyecto</a></div><div class="bg-white rounded-2xl p-8 shadow-sm pricing-featured"><h3 class="font-serif text-2xl font-bold text-navy-900">Representación por proyecto</h3><p class="text-steel-600 text-sm my-4">Acompañamiento durante varias semanas o meses para una operación concreta.</p><a href="#contacto" class="btn-primary block text-center px-6 py-3 rounded-lg">Solicitar propuesta</a></div><div class="bg-white rounded-2xl p-8 shadow-sm"><h3 class="font-serif text-2xl font-bold text-navy-900">Representación permanente</h3><p class="text-steel-600 text-sm my-4">Su oficina externa en Veracruz. Mensualidad fija con alcance definido.</p><a href="#contacto" class="btn-navy block text-center px-6 py-3 rounded-lg">Agendar llamada</a></div></div></div></section>
-<section id="casos" class="py-24 lg:py-32 bg-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="max-w-3xl mb-16"><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Casos de uso</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold">Escenarios de representación local.</h2></div><div class="grid md:grid-cols-3 gap-6"><div class="bg-steel-50 rounded-2xl p-8"><h3 class="font-serif font-bold text-navy-900">Empresa colombiana</h3><p class="text-steel-600 text-sm mt-3">Verificación de proveedor y documentación en Veracruz sin desplazar personal propio.</p></div><div class="bg-steel-50 rounded-2xl p-8"><h3 class="font-serif font-bold text-navy-900">Empresa de CDMX</h3><p class="text-steel-600 text-sm mt-3">Operaciones ocasionales con representación local por demanda.</p></div><div class="bg-steel-50 rounded-2xl p-8"><h3 class="font-serif font-bold text-navy-900">Empresa extranjera</h3><p class="text-steel-600 text-sm mt-3">Acompañamiento empresarial y coordinación local para aterrizaje en Veracruz.</p></div></div></div></section>
-<section id="portal" class="py-24 lg:py-32 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 text-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="grid lg:grid-cols-2 gap-16 items-center"><div><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Portal del cliente</div><h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6">Un servicio profesional con trazabilidad completa.</h2><p class="text-white/70 text-lg mb-8">Cada empresa accede a un portal privado donde ve expedientes, avances, documentos, evidencias, tareas e informes.</p><a href="#contacto" class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold">Solicitar acceso demo</a></div><div class="bg-white rounded-2xl p-8 text-navy-900"><div class="font-serif text-xl font-bold">Portal del Cliente · Expediente #2026-0847</div><div class="grid grid-cols-4 gap-3 mt-6 text-center"><div class="bg-navy-50 p-3 rounded-lg"><strong>12</strong><br><small>Documentos</small></div><div class="bg-navy-50 p-3 rounded-lg"><strong>28</strong><br><small>Evidencias</small></div><div class="bg-navy-50 p-3 rounded-lg"><strong>3</strong><br><small>Pendientes</small></div><div class="bg-navy-50 p-3 rounded-lg"><strong>94%</strong><br><small>Avance</small></div></div></div></div></div></section>
-<section id="contacto" class="py-24 lg:py-32 bg-white"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="grid lg:grid-cols-2 gap-16"><div><div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Contacto</div><h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6">Solicite su orientación inicial gratuita.</h2><p class="text-steel-600 text-lg mb-10">Videollamada de 15 minutos para entender su necesidad.</p><div class="space-y-5"><a href="#whatsapp" class="block p-5 bg-green-50 rounded-xl"><strong>WhatsApp directo</strong><br><span class="text-steel-500 text-sm">Respuesta en menos de 24 horas</span></a><div class="p-5 bg-navy-50 rounded-xl"><strong>Correo electrónico</strong><br><span class="text-steel-500 text-sm">contacto@mauromontalvo.mx</span></div><div class="p-5 bg-navy-50 rounded-xl"><strong>Ubicación</strong><br><span class="text-steel-500 text-sm">Puerto de Veracruz, México</span></div></div></div><form id="contactForm" class="bg-steel-50 rounded-2xl p-8 shadow-sm"><h3 class="font-serif text-2xl font-bold text-navy-900 mb-6">Solicitar orientación inicial</h3><div class="space-y-4"><input type="text" required placeholder="Nombre completo" class="form-input w-full px-4 py-3 border rounded-lg bg-white"><input type="text" required placeholder="Empresa" class="form-input w-full px-4 py-3 border rounded-lg bg-white"><input type="text" required placeholder="País" class="form-input w-full px-4 py-3 border rounded-lg bg-white"><input type="email" required placeholder="Correo electrónico" class="form-input w-full px-4 py-3 border rounded-lg bg-white"><textarea rows="4" required placeholder="¿Qué necesita resolver?" class="form-input w-full px-4 py-3 border rounded-lg bg-white"></textarea><select class="form-input w-full px-4 py-3 border rounded-lg bg-white"><option>Servicio puntual</option><option>Representación por proyecto</option><option>Representación permanente</option><option>Aún no lo sé</option></select><button type="submit" class="btn-primary w-full px-6 py-4 rounded-lg font-semibold">Enviar solicitud</button></div></form></div></div></section>
-<section class="py-20 bg-navy-900 text-white text-center"><div class="max-w-4xl mx-auto px-6"><div class="text-gold font-serif text-2xl italic mb-6">"Sus ojos, sus manos y su voz en Veracruz."</div><h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">Cuando su empresa necesita estar en Veracruz, nosotros estamos por usted.</h2><a href="#contacto" class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold">Solicitar orientación inicial</a></div></section>
-<footer class="bg-navy-950 text-white py-16"><div class="max-w-7xl mx-auto px-6 lg:px-10"><div class="font-serif font-bold text-lg">Mauro J. Montalvo</div><div class="text-xs uppercase text-white/60 mb-4">Representación Empresarial Veracruz</div><p class="text-white/60 text-sm">Representación empresarial, gestión administrativa y seguimiento presencial para empresas nacionales y latinoamericanas en Veracruz, México.</p><div class="border-t border-white/10 pt-8 mt-8 text-white/50 text-sm">© 2026 Mauro J. Montalvo · Todos los derechos reservados.</div></div></footer>
-<a id="whatsapp" href="https://wa.me/5212291234567" target="_blank" class="fixed bottom-6 right-6 z-40 wa-float bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl font-bold">WA</a>
-<div id="waModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop"><div class="bg-white rounded-2xl max-w-md w-full p-8 relative"><button id="closeWaModal" class="absolute top-4 right-4">✕</button><h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">¿Cómo podemos ayudarle?</h3><div class="space-y-3 mt-6"><button class="wa-option w-full text-left p-4 border rounded-xl" data-msg="Necesito realizar una gestión en Veracruz">Necesito realizar una gestión</button><button class="wa-option w-full text-left p-4 border rounded-xl" data-msg="Necesito representación local en Veracruz">Necesito representación local</button><button class="wa-option w-full text-left p-4 border rounded-xl" data-msg="Necesito seguimiento de un asunto en Veracruz">Necesito seguimiento de un asunto</button><button class="wa-option w-full text-left p-4 border rounded-xl" data-msg="Quiero operar en Veracruz">Quiero operar en Veracruz</button></div></div></div>
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1ff62509b-be8e-43d1-81c2-297cc9e6f6e0.png" alt="Puerto de Veracruz" class="w-full h-full object-cover">
+    <div class="hero-overlay absolute inset-0"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32 lg:py-40 w-full">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-8">
+        <span class="w-2 h-2 rounded-full bg-gold status-dot"></span>
+        <span class="text-white/90 text-sm tracking-wide">Presencia Empresarial en Veracruz</span>
+      </div>
+      <h1 class="font-serif text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6">
+        Su empresa en Veracruz,<br>
+        <span class="text-gold italic">sin necesidad de estar</span> en Veracruz.
+      </h1>
+      <p class="text-white/85 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+        Representación empresarial, gestión administrativa y seguimiento presencial para empresas nacionales y latinoamericanas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 mb-12">
+        <a href="#contacto" class="btn-primary px-8 py-4 rounded-lg font-semibold text-center">Solicitar orientación inicial</a>
+        <a href="#whatsapp" class="btn-outline px-8 py-4 rounded-lg font-semibold text-center flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Hablar por WhatsApp
+        </a>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-white/70 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span>Respuesta en 24 horas</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span>Evidencia documentada</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span>Portal de seguimiento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 animate-bounce">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</section>
+
+<!-- MARQUEE TRUST -->
+<section class="bg-navy-950 py-6 border-y border-white/10 overflow-hidden">
+  <div class="marquee whitespace-nowrap">
+    <div class="flex items-center gap-12 px-6 text-white/50 text-sm tracking-[0.2em] uppercase">
+      <span>Representación Local</span><span class="text-gold">✦</span>
+      <span>Gestión Administrativa</span><span class="text-gold">✦</span>
+      <span>Coordinación Institucional</span><span class="text-gold">✦</span>
+      <span>Seguimiento Operativo</span><span class="text-gold">✦</span>
+      <span>Verificación Presencial</span><span class="text-gold">✦</span>
+      <span>Resolución de Incidencias</span><span class="text-gold">✦</span>
+      <span>Apertura Empresarial</span><span class="text-gold">✦</span>
+      <span>Coordinación de Proveedores</span><span class="text-gold">✦</span>
+    </div>
+    <div class="flex items-center gap-12 px-6 text-white/50 text-sm tracking-[0.2em] uppercase">
+      <span>Representación Local</span><span class="text-gold">✦</span>
+      <span>Gestión Administrativa</span><span class="text-gold">✦</span>
+      <span>Coordinación Institucional</span><span class="text-gold">✦</span>
+      <span>Seguimiento Operativo</span><span class="text-gold">✦</span>
+      <span>Verificación Presencial</span><span class="text-gold">✦</span>
+      <span>Resolución de Incidencias</span><span class="text-gold">✦</span>
+      <span>Apertura Empresarial</span><span class="text-gold">✦</span>
+      <span>Coordinación de Proveedores</span><span class="text-gold">✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema" class="py-24 lg:py-32 bg-steel-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-3xl mb-16 fade-up">
+      <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">El problema</div>
+      <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        ¿Su empresa necesita resolver algo en Veracruz pero no tiene personal aquí?
+      </h2>
+      <p class="text-steel-600 text-lg leading-relaxed">
+        Cada día sin atención local es un día de retraso. Identifique su situación:
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4 stagger">
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Tiene documentos que requieren seguimiento en Veracruz?</h3>
+            <p class="text-steel-500 text-sm">Trámites detenidos, solicitudes sin respuesta, expedientes que avanzan lentamente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Necesita que alguien asista presencialmente en representación de su empresa?</h3>
+            <p class="text-steel-500 text-sm">Reuniones, juntas, presentaciones ante autoridades o socios comerciales.</p>
+          </div>
+        </div>
+      </div>
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Necesita verificar que un proveedor realizó un trabajo?</h3>
+            <p class="text-steel-500 text-sm">Inspección, supervisión y validación de servicios contratados.</p>
+          </div>
+        </div>
+      </div>
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Necesita obtener información y evidencias sin enviar personal?</h3>
+            <p class="text-steel-500 text-sm">Reportes, fotografías, documentos y avances en tiempo real.</p>
+          </div>
+        </div>
+      </div>
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Tiene un asunto administrativo detenido?</h3>
+            <p class="text-steel-500 text-sm">Procesos que requieren empuje, seguimiento y gestión presencial.</p>
+          </div>
+        </div>
+      </div>
+      <div class="problem-card bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-navy-900/5 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-navy-900 mb-1">¿Requiere presencia temporal antes de establecer una oficina?</h3>
+            <p class="text-steel-500 text-sm">Representación inicial mientras estructura su operación en Veracruz.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 p-8 bg-navy-900 rounded-2xl text-center fade-up">
+      <h3 class="font-serif text-white text-3xl md:text-4xl font-bold mb-3">Nosotros nos encargamos localmente.</h3>
+      <p class="text-white/70 max-w-2xl mx-auto">Representación empresarial, gestión administrativa y seguimiento presencial con trazabilidad documentada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section class="py-24 lg:py-32 bg-white relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
+    <img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1c0a33403-b0d5-4784-b205-dd2b73188244.png" class="w-full h-full object-cover">
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">La solución</div>
+        <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Representación empresarial local con trazabilidad.
+        </h2>
+        <p class="text-steel-600 text-lg leading-relaxed mb-6">
+          Actuamos como el <strong class="text-navy-900">enlace local de confianza</strong> de su empresa: damos seguimiento a trámites, coordinamos proveedores, asistimos a reuniones, verificamos situaciones presencialmente, obtenemos información, documentamos avances y resolvemos asuntos administrativos u operativos.
+        </p>
+        <p class="text-steel-600 text-lg leading-relaxed mb-8">
+          Nuestra propuesta de valor no consiste solamente en "hacer trámites", sino en proporcionar a la empresa <strong class="text-navy-900">presencia, seguimiento, información y capacidad de respuesta</strong> en Veracruz.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 bg-navy-50 text-navy-800 rounded-full text-sm font-medium">Presencia</span>
+          <span class="px-4 py-2 bg-navy-50 text-navy-800 rounded-full text-sm font-medium">Seguimiento</span>
+          <span class="px-4 py-2 bg-navy-50 text-navy-800 rounded-full text-sm font-medium">Información</span>
+          <span class="px-4 py-2 bg-navy-50 text-navy-800 rounded-full text-sm font-medium">Capacidad de respuesta</span>
+        </div>
+      </div>
+      <div class="relative fade-up">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1af5d26b1-b565-4604-a34a-93dac1048264.png" class="w-full h-[500px] object-cover">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-950/90 to-transparent p-8">
+            <div class="text-gold font-serif text-xl italic mb-1">"Sus ojos, sus manos y su voz en Veracruz."</div>
+            <div class="text-white/70 text-sm">Concepto de marca</div>
+          </div>
+        </div>
+        <div class="absolute -top-6 -right-6 bg-gold text-navy-950 p-6 rounded-2xl shadow-xl hidden md:block">
+          <div class="font-serif text-4xl font-bold">15+</div>
+          <div class="text-sm font-medium">años de experiencia<br>administrativa e institucional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="py-24 lg:py-32 bg-navy-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-20 left-20 w-96 h-96 bg-gold rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 bg-navy-500 rounded-full blur-3xl"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="max-w-3xl mb-16 fade-up">
+      <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Servicios</div>
+      <h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Soluciones concretas para cada necesidad empresarial.
+      </h2>
+      <p class="text-white/70 text-lg leading-relaxed">
+        No vendemos "horas de Mauro". Vendemos servicios definidos con alcance, entregables y evidencias.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Representación Empresarial Local</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Presencia y representación de la empresa en Veracruz ante terceros, autoridades y socios.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Gestión Administrativa Empresarial</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Seguimiento documental, solicitudes, trámites y coordinación institucional.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Seguimiento Presencial</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Visitas, verificaciones, recopilación de documentos, fotografías y evidencias.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Coordinación de Proveedores</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Contacto, citas, cotizaciones, supervisión y seguimiento de proveedores locales.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Representación en Reuniones</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Participación en representación de la empresa con minuta e informe posterior.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Resolución de Incidencias Locales</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Atención de situaciones que requieren intervención presencial inmediata.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Investigación y Verificación Local</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Obtención y validación de información comercial u operativa en terreno.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-serif text-xl font-bold mb-3">Apertura Empresarial en Veracruz</h3>
+        <p class="text-white/65 text-sm leading-relaxed">Apoyo inicial para empresas que comienzan operaciones en la región.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como-funciona" class="py-24 lg:py-32 bg-steel-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-3xl mb-16 fade-up">
+      <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Cómo trabajamos</div>
+      <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Un proceso claro, documentado y trazable.
+      </h2>
+      <p class="text-steel-600 text-lg leading-relaxed">
+        Seis pasos que reducen la incertidumbre y garantizan que usted reciba información en tiempo y forma.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">01</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Cuéntenos qué necesita resolver</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Formulario, WhatsApp o videollamada. Recibimos su caso estructurado.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">02</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Analizamos el caso</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Evaluamos alcance, viabilidad y recursos necesarios para atender su solicitud.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">03</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Definimos alcance y honorarios</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Propuesta clara con entregables, tiempos y costos. Sin sorpresas.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">04</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Mauro actúa localmente</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Visitas, reuniones, coordinaciones y gestiones en terreno con registro constante.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">05</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Recibe evidencia y seguimiento</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Fotografías, documentos, reportes y actualizaciones a través del portal del cliente.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover border-t-4 border-gold">
+        <div class="font-serif text-6xl font-bold text-navy-900/10 mb-2">06</div>
+        <h3 class="font-serif text-xl font-bold text-navy-900 mb-3">Cerramos y documentamos</h3>
+        <p class="text-steel-500 text-sm leading-relaxed">Informe final, expediente completo y recomendaciones para continuidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFIL -->
+<section id="perfil" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-5 gap-12 items-center">
+      <div class="lg:col-span-2 fade-up">
+        <div class="relative">
+          <img src="assets/mauro-1.webp" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover">
+          <div class="absolute -bottom-6 -right-6 bg-navy-900 text-white p-6 rounded-2xl shadow-xl hidden md:block max-w-[220px]">
+            <div class="text-gold font-serif text-2xl font-bold mb-1">Mauro J. Montalvo</div>
+            <div class="text-white/70 text-sm">Representante Empresarial Local</div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-3 fade-up">
+        <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Perfil profesional</div>
+        <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Trayectoria administrativa e institucional al servicio de su empresa.
+        </h2>
+        <p class="text-steel-600 text-lg leading-relaxed mb-6">
+          Profesional especializado en representación local, gestión administrativa, coordinación institucional y seguimiento operativo para empresas nacionales y latinoamericanas que requieren presencia en Veracruz sin necesidad de establecer inicialmente una estructura administrativa propia.
+        </p>
+        <p class="text-steel-600 text-lg leading-relaxed mb-8">
+          Su función es actuar como <strong class="text-navy-900">enlace local de confianza</strong> de la empresa: dar seguimiento a trámites, coordinar proveedores y servicios, asistir o representar en reuniones, verificar situaciones presencialmente, obtener información, documentar avances y resolver asuntos administrativos u operativos que requieren presencia física y conocimiento del entorno local.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="bg-navy-50 p-5 rounded-xl">
+            <div class="font-serif text-3xl font-bold text-navy-900">15+</div>
+            <div class="text-steel-600 text-sm">Años de experiencia administrativa e institucional</div>
+          </div>
+          <div class="bg-navy-50 p-5 rounded-xl">
+            <div class="font-serif text-3xl font-bold text-navy-900">100%</div>
+            <div class="text-steel-600 text-sm">Enfoque en representación empresarial local</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 bg-navy-900 text-white rounded-full text-sm">Gestión administrativa</span>
+          <span class="px-4 py-2 bg-navy-900 text-white rounded-full text-sm">Coordinación institucional</span>
+          <span class="px-4 py-2 bg-navy-900 text-white rounded-full text-sm">Representación empresarial</span>
+          <span class="px-4 py-2 bg-navy-900 text-white rounded-full text-sm">Seguimiento operativo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCIAS -->
+<section class="py-24 lg:py-32 bg-navy-950 text-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+        <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Evidencias y seguimiento</div>
+        <h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Cada visita produce evidencia. Cada gestión genera trazabilidad.
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Desde su teléfono registramos llegada, fotografías, documentos, comentarios, personas contactadas, resultados y próximos pasos. Usted recibe automáticamente: <em class="text-gold">"Su gestión en Veracruz fue actualizada."</em>
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Fotografías georreferenciadas</h4>
+              <p class="text-white/60 text-sm">Registro visual con fecha, hora y ubicación verificable.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Documentos digitalizados</h4>
+              <p class="text-white/60 text-sm">Copias escaneadas y organizadas en su expediente.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Reportes ejecutivos</h4>
+              <p class="text-white/60 text-sm">Informes claros para la toma de decisiones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="bg-white rounded-2xl p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <div class="text-xs text-steel-500 uppercase tracking-wider">Actualización en tiempo real</div>
+              <div class="font-serif text-navy-900 text-lg font-bold">Proyecto: Seguimiento Veracruz</div>
+            </div>
+            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500 status-dot"></span>
+              En proceso
+            </span>
+          </div>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-steel-500">Responsable</span>
+              <span class="font-medium text-navy-900">Mauro Montalvo</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-steel-500">Última actualización</span>
+              <span class="font-medium text-navy-900">Hoy, 14:32</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-steel-500">Documentos</span>
+              <span class="font-medium text-navy-900">7</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-steel-500">Evidencias</span>
+              <span class="font-medium text-navy-900">14</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-steel-500">Pendientes</span>
+              <span class="font-medium text-navy-900">2</span>
+            </div>
+          </div>
+          <div class="border-t pt-5">
+            <div class="text-xs text-steel-500 uppercase tracking-wider mb-3">Línea de tiempo</div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 rounded-full bg-navy-900 mt-2 flex-shrink-0"></div>
+                <div class="text-sm">
+                  <div class="font-medium text-navy-900">Solicitud recibida</div>
+                  <div class="text-steel-500 text-xs">10 ago · 09:15</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 rounded-full bg-navy-900 mt-2 flex-shrink-0"></div>
+                <div class="text-sm">
+                  <div class="font-medium text-navy-900">Contacto realizado</div>
+                  <div class="text-steel-500 text-xs">10 ago · 11:42</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 rounded-full bg-navy-900 mt-2 flex-shrink-0"></div>
+                <div class="text-sm">
+                  <div class="font-medium text-navy-900">Visita realizada</div>
+                  <div class="text-steel-500 text-xs">11 ago · 10:00</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 rounded-full bg-gold mt-2 flex-shrink-0 status-dot"></div>
+                <div class="text-sm">
+                  <div class="font-medium text-navy-900">Evidencia cargada</div>
+                  <div class="text-steel-500 text-xs">Hoy · 14:32</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 opacity-40">
+                <div class="w-2 h-2 rounded-full bg-steel-300 mt-2 flex-shrink-0"></div>
+                <div class="text-sm">
+                  <div class="font-medium text-navy-900">Asunto cerrado</div>
+                  <div class="text-steel-500 text-xs">Pendiente</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section id="modalidades" class="py-24 lg:py-32 bg-steel-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-3xl mb-16 fade-up">
+      <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Modalidades de contratación</div>
+      <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Tres formas de trabajar, según su necesidad.
+      </h2>
+      <p class="text-steel-600 text-lg leading-relaxed">
+        Desde una gestión puntual hasta una oficina externa permanente en Veracruz.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 stagger">
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
+        <div class="text-gold font-serif text-sm tracking-[0.2em] uppercase mb-3">Opción 01</div>
+        <h3 class="font-serif text-2xl font-bold text-navy-900 mb-3">Servicio puntual</h3>
+        <p class="text-steel-600 text-sm leading-relaxed mb-6">Para una necesidad determinada. Se cotiza como proyecto específico.</p>
+        <div class="border-t pt-6 mb-6">
+          <div class="text-steel-500 text-sm mb-3">Ideal para:</div>
+          <ul class="space-y-2 text-sm text-navy-900">
+            <li class="flex items-start gap-2"><span class="text-gold mt-1"></span> Verificaciones puntuales</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Trámites específicos</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Asistencia a una reunión</li>
+          </ul>
+        </div>
+        <a href="#contacto" class="btn-navy block text-center px-6 py-3 rounded-lg font-semibold">Cotizar proyecto</a>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover pricing-featured relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy-950 px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">Más solicitado</div>
+        <div class="text-gold font-serif text-sm tracking-[0.2em] uppercase mb-3">Opción 02</div>
+        <h3 class="font-serif text-2xl font-bold text-navy-900 mb-3">Representación por proyecto</h3>
+        <p class="text-steel-600 text-sm leading-relaxed mb-6">Acompañamiento durante varias semanas o meses para una operación concreta.</p>
+        <div class="border-t pt-6 mb-6">
+          <div class="text-steel-500 text-sm mb-3">Ideal para:</div>
+          <ul class="space-y-2 text-sm text-navy-900">
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Apertura de operaciones</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Proyectos de 30-90 días</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Coordinación de proveedores</li>
+          </ul>
+        </div>
+        <a href="#contacto" class="btn-primary block text-center px-6 py-3 rounded-lg font-semibold">Solicitar propuesta</a>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
+        <div class="text-gold font-serif text-sm tracking-[0.2em] uppercase mb-3">Opción 03</div>
+        <h3 class="font-serif text-2xl font-bold text-navy-900 mb-3">Representación permanente</h3>
+        <p class="text-steel-600 text-sm leading-relaxed mb-6">Su oficina externa en Veracruz. Mensualidad fija con alcance definido.</p>
+        <div class="border-t pt-6 mb-6">
+          <div class="text-steel-500 text-sm mb-3">Ideal para:</div>
+          <ul class="space-y-2 text-sm text-navy-900">
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Operación continua</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Presencia recurrente</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-1">✦</span> Ingresos recurrentes y trazables</li>
+          </ul>
+        </div>
+        <a href="#contacto" class="btn-navy block text-center px-6 py-3 rounded-lg font-semibold">Agendar llamada</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS DE USO -->
+<section id="casos" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-3xl mb-16 fade-up">
+      <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Casos de uso</div>
+      <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Empresas como la suya ya confían en representación local.
+      </h2>
+      <p class="text-steel-600 text-lg leading-relaxed">
+        Tres escenarios reales. Mismo servicio, diferente contexto.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 stagger">
+      <div class="bg-steel-50 rounded-2xl p-8 card-hover">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-navy-900 flex items-center justify-center text-white font-bold">CO</div>
+          <div>
+            <div class="font-serif font-bold text-navy-900">Empresa colombiana</div>
+            <div class="text-steel-500 text-xs">Verificación de proveedor</div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Problema</div>
+            <p class="text-steel-600 text-sm">Necesita verificar personalmente documentación y un proveedor en Veracruz.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Acción</div>
+            <p class="text-steel-600 text-sm">Mauro realiza visita, recopila información y entrega reporte con evidencias.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Resultado</div>
+            <p class="text-steel-600 text-sm">Decisión informada sin desplazar personal propio a Veracruz.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-steel-50 rounded-2xl p-8 card-hover">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-navy-900 flex items-center justify-center text-white font-bold">MX</div>
+          <div>
+            <div class="font-serif font-bold text-navy-900">Empresa de CDMX</div>
+            <div class="text-steel-500 text-xs">Operaciones ocasionales</div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Problema</div>
+            <p class="text-steel-600 text-sm">Tiene operaciones ocasionales en Veracruz pero no justifica contratar personal permanente.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Acción</div>
+            <p class="text-steel-600 text-sm">Representación local por demanda con portal de seguimiento.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Resultado</div>
+            <p class="text-steel-600 text-sm">Presencia empresarial sin estructura administrativa fija.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-steel-50 rounded-2xl p-8 card-hover">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-navy-900 flex items-center justify-center text-white font-bold">US</div>
+          <div>
+            <div class="font-serif font-bold text-navy-900">Empresa extranjera</div>
+            <div class="text-steel-500 text-xs">Aterrizaje en Veracruz</div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Problema</div>
+            <p class="text-steel-600 text-sm">Necesita comenzar a conocer proveedores y funcionamiento local.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Acción</div>
+            <p class="text-steel-600 text-sm">Acompañamiento empresarial y coordinación local durante 90 días.</p>
+          </div>
+          <div>
+            <div class="text-xs text-gold font-bold uppercase tracking-wider mb-1">Resultado</div>
+            <p class="text-steel-600 text-sm">Base operativa establecida con información verificada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAL DEMO -->
+<section id="portal" class="py-24 lg:py-32 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
+    <img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1c0a33403-b0d5-4784-b205-dd2b73188244.png" class="w-full h-full object-cover">
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Portal del cliente</div>
+        <h2 class="font-serif text-white text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Un servicio profesional con trazabilidad completa.
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Cada empresa accede a un portal privado donde ve expedientes, avances, documentos, evidencias, tareas e informes. Ya no contratan simplemente a Mauro: contratan un <strong class="text-gold">servicio profesional de representación con trazabilidad</strong>.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-5">
+            <div class="font-serif text-3xl font-bold text-gold mb-1">CRM</div>
+            <div class="text-white/60 text-sm">Gestión de empresas y expedientes</div>
+          </div>
+          <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-5">
+            <div class="font-serif text-3xl font-bold text-gold mb-1">24/7</div>
+            <div class="text-white/60 text-sm">Acceso a información en tiempo real</div>
+          </div>
+          <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-5">
+            <div class="font-serif text-3xl font-bold text-gold mb-1">IA</div>
+            <div class="text-white/60 text-sm">Clasificación inicial de solicitudes</div>
+          </div>
+          <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-5">
+            <div class="font-serif text-3xl font-bold text-gold mb-1">Auto</div>
+            <div class="text-white/60 text-sm">Actualizaciones automáticas por email</div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold">Solicitar acceso demo</a>
+      </div>
+      <div class="fade-up">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-2xl">
+          <div class="bg-navy-900 px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-red-400"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+              <div class="w-3 h-3 rounded-full bg-green-400"></div>
+              <div class="ml-4 text-white/80 text-sm font-medium">Portal del Cliente · Expediente #2026-0847</div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <div class="text-xs text-steel-500 uppercase tracking-wider">Cliente</div>
+                <div class="font-serif text-navy-900 text-lg font-bold">Industrias del Pacífico S.A.</div>
+              </div>
+              <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 status-dot"></span>
+                Activo
+              </span>
+            </div>
+            <div class="grid grid-cols-4 gap-3 mb-6">
+              <div class="bg-navy-50 p-3 rounded-lg text-center">
+                <div class="font-serif text-2xl font-bold text-navy-900">12</div>
+                <div class="text-xs text-steel-500">Documentos</div>
+              </div>
+              <div class="bg-navy-50 p-3 rounded-lg text-center">
+                <div class="font-serif text-2xl font-bold text-navy-900">28</div>
+                <div class="text-xs text-steel-500">Evidencias</div>
+              </div>
+              <div class="bg-navy-50 p-3 rounded-lg text-center">
+                <div class="font-serif text-2xl font-bold text-navy-900">3</div>
+                <div class="text-xs text-steel-500">Pendientes</div>
+              </div>
+              <div class="bg-navy-50 p-3 rounded-lg text-center">
+                <div class="font-serif text-2xl font-bold text-navy-900">94%</div>
+                <div class="text-xs text-steel-500">Avance</div>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <div class="text-xs text-steel-500 uppercase tracking-wider mb-3">Actividad reciente</div>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between py-2 border-b border-steel-100">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-navy-900">Visita a proveedor completada</div>
+                      <div class="text-xs text-steel-500">Hoy · 14:32</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-steel-500">+3 evidencias</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-steel-100">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-navy-900">Documento cargado al expediente</div>
+                      <div class="text-xs text-steel-500">Hoy · 11:15</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-steel-500">PDF · 2.4 MB</span>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-navy-900">Próxima actividad programada</div>
+                      <div class="text-xs text-steel-500">Mañana · 10:00</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-gold font-medium">Reunión</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <div class="fade-up">
+        <div class="text-gold font-semibold tracking-[0.2em] uppercase text-sm mb-4">Contacto</div>
+        <h2 class="font-serif text-navy-900 text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Solicite su orientación inicial gratuita.
+        </h2>
+        <p class="text-steel-600 text-lg leading-relaxed mb-10">
+          Videollamada de 15 minutos para entender su necesidad. Mauro recibe toda la información antes de la llamada.
+        </p>
+        <div class="space-y-5">
+          <a href="#whatsapp" class="flex items-center gap-4 p-5 bg-green-50 rounded-xl hover:bg-green-100 transition group">
+            <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold text-navy-900">WhatsApp directo</div>
+              <div class="text-steel-500 text-sm">Respuesta en menos de 24 horas</div>
+            </div>
+            <svg class="w-5 h-5 text-steel-400 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <div class="flex items-center gap-4 p-5 bg-navy-50 rounded-xl">
+            <div class="w-12 h-12 rounded-xl bg-navy-900 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-900">Correo electrónico</div>
+              <div class="text-steel-500 text-sm">contacto@mauromontalvo.mx</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-5 bg-navy-50 rounded-xl">
+            <div class="w-12 h-12 rounded-xl bg-navy-900 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-900">Ubicación</div>
+              <div class="text-steel-500 text-sm">Puerto de Veracruz, México</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <form id="contactForm" class="bg-steel-50 rounded-2xl p-8 shadow-sm">
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mb-6">Solicitar orientación inicial</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-navy-900 mb-2">Nombre completo *</label>
+              <input type="text" required class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-navy-900 mb-2">Empresa *</label>
+                <input type="text" required class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-navy-900 mb-2">País *</label>
+                <input type="text" required class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-navy-900 mb-2">Correo electrónico *</label>
+              <input type="email" required class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-navy-900 mb-2">¿Qué necesita resolver? *</label>
+              <textarea rows="4" required class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-navy-900 mb-2">Modalidad de interés</label>
+              <select class="form-input w-full px-4 py-3 border border-steel-200 rounded-lg bg-white">
+                <option>Servicio puntual</option>
+                <option>Representación por proyecto</option>
+                <option>Representación permanente</option>
+                <option>Aún no lo sé</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary w-full px-6 py-4 rounded-lg font-semibold">Enviar solicitud</button>
+            <p class="text-steel-500 text-xs text-center">Mauro recibirá su caso estructurado antes de la videollamada.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-20 bg-navy-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <img src="https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1ff62509b-be8e-43d1-81c2-297cc9e6f6e0.png" class="w-full h-full object-cover">
+  </div>
+  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center relative">
+    <div class="text-gold font-serif text-2xl italic mb-6">"Sus ojos, sus manos y su voz en Veracruz."</div>
+    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6 leading-tight">
+      Cuando su empresa necesita estar en Veracruz, nosotros estamos por usted.
+    </h2>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#contacto" class="btn-primary px-8 py-4 rounded-lg font-semibold">Solicitar orientación inicial</a>
+      <a href="#whatsapp" class="btn-outline px-8 py-4 rounded-lg font-semibold">Hablar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy-950 text-white py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>
+          <div>
+            <div class="font-serif font-bold text-lg">Mauro J. Montalvo</div>
+            <div class="text-xs tracking-[0.2em] uppercase text-white/60">Representación Empresarial Veracruz</div>
+          </div>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed max-w-md">
+          Representación empresarial, gestión administrativa y seguimiento presencial para empresas nacionales y latinoamericanas en Veracruz, México.
+        </p>
+      </div>
+      <div>
+        <div class="font-semibold mb-4 text-gold">Servicios</div>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li><a href="#servicios" class="hover:text-white">Representación local</a></li>
+          <li><a href="#servicios" class="hover:text-white">Gestión administrativa</a></li>
+          <li><a href="#servicios" class="hover:text-white">Seguimiento presencial</a></li>
+          <li><a href="#servicios" class="hover:text-white">Coordinación de proveedores</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold mb-4 text-gold">Contacto</div>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>Puerto de Veracruz, México</li>
+          <li>contacto@mauromontalvo.mx</li>
+          <li><a href="#whatsapp" class="hover:text-white">WhatsApp directo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-white/50 text-sm">© 2026 Mauro J. Montalvo · Representación Empresarial Veracruz. Todos los derechos reservados.</div>
+      <div class="flex gap-6 text-sm text-white/50">
+        <a href="#" class="hover:text-white">Aviso de privacidad</a>
+        <a href="#" class="hover:text-white">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING -->
+<a id="whatsapp" href="https://wa.me/5212291234567?text=Hola%20Mauro,%20necesito%20información%20sobre%20representación%20empresarial%20en%20Veracruz" target="_blank" class="fixed bottom-6 right-6 z-40 wa-float bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl">
+  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- WHATSAPP MODAL -->
+<div id="waModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+  <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+    <button id="closeWaModal" class="absolute top-4 right-4 text-steel-400 hover:text-navy-900">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="text-gold font-semibold tracking-[0.2em] uppercase text-xs mb-3">WhatsApp inteligente</div>
+    <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">¿Cómo podemos ayudarle?</h3>
+    <p class="text-steel-500 text-sm mb-6">Seleccione su necesidad y le enviaremos un mensaje estructurado.</p>
+    <div class="space-y-3">
+      <button class="wa-option w-full text-left p-4 border border-steel-200 rounded-xl hover:border-gold hover:bg-gold/5 transition" data-msg="Necesito realizar una gestión en Veracruz">
+        <div class="font-semibold text-navy-900">Necesito realizar una gestión</div>
+        <div class="text-steel-500 text-xs">Trámite, documento o asunto administrativo</div>
+      </button>
+      <button class="wa-option w-full text-left p-4 border border-steel-200 rounded-xl hover:border-gold hover:bg-gold/5 transition" data-msg="Necesito representación local en Veracruz">
+        <div class="font-semibold text-navy-900">Necesito representación local</div>
+        <div class="text-steel-500 text-xs">Presencia empresarial continua</div>
+      </button>
+      <button class="wa-option w-full text-left p-4 border border-steel-200 rounded-xl hover:border-gold hover:bg-gold/5 transition" data-msg="Necesito seguimiento de un asunto en Veracruz">
+        <div class="font-semibold text-navy-900">Necesito seguimiento de un asunto</div>
+        <div class="text-steel-500 text-xs">Verificación, evidencia o información</div>
+      </button>
+      <button class="wa-option w-full text-left p-4 border border-steel-200 rounded-xl hover:border-gold hover:bg-gold/5 transition" data-msg="Quiero operar en Veracruz">
+        <div class="font-semibold text-navy-900">Quiero operar en Veracruz</div>
+        <div class="text-steel-500 text-xs">Apertura o aterrizaje empresarial</div>
+      </button>
+      <button class="wa-option w-full text-left p-4 border border-steel-200 rounded-xl hover:border-gold hover:bg-gold/5 transition" data-msg="Tengo otra necesidad">
+        <div class="font-semibold text-navy-900">Tengo otra necesidad</div>
+        <div class="text-steel-500 text-xs">Conversemos directamente</div>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
-const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('nav-scrolled',window.scrollY>80));const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('hidden'));mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.add('hidden')));const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')}),{threshold:.1});document.querySelectorAll('.fade-up,.stagger').forEach(el=>observer.observe(el));const waModal=document.getElementById('waModal'),closeWaModal=document.getElementById('closeWaModal'),waFloat=document.getElementById('whatsapp');waFloat.addEventListener('click',e=>{e.preventDefault();waModal.classList.remove('hidden');waModal.classList.add('flex')});closeWaModal.addEventListener('click',()=>{waModal.classList.add('hidden');waModal.classList.remove('flex')});waModal.addEventListener('click',e=>{if(e.target===waModal){waModal.classList.add('hidden');waModal.classList.remove('flex')}});document.querySelectorAll('.wa-option').forEach(btn=>btn.addEventListener('click',()=>window.open(`https://wa.me/5212291234567?text=${encodeURIComponent(btn.getAttribute('data-msg'))}`,'_blank')));document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const btn=e.target.querySelector('button[type="submit"]'),t=btn.textContent;btn.textContent='✓ Solicitud enviada';setTimeout(()=>{btn.textContent=t;e.target.reset()},3000)});
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    navbar.classList.add('nav-scrolled');
+  } else {
+    navbar.classList.remove('nav-scrolled');
+  }
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+// Fade up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
+
+// WhatsApp modal
+const waModal = document.getElementById('waModal');
+const closeWaModal = document.getElementById('closeWaModal');
+const waFloat = document.getElementById('whatsapp');
+
+waFloat.addEventListener('click', (e) => {
+  e.preventDefault();
+  waModal.classList.remove('hidden');
+  waModal.classList.add('flex');
+});
+
+closeWaModal.addEventListener('click', () => {
+  waModal.classList.add('hidden');
+  waModal.classList.remove('flex');
+});
+
+waModal.addEventListener('click', (e) => {
+  if (e.target === waModal) {
+    waModal.classList.add('hidden');
+    waModal.classList.remove('flex');
+  }
+});
+
+document.querySelectorAll('.wa-option').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const msg = btn.getAttribute('data-msg');
+    const url = `https://wa.me/5212291234567?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  });
+});
+
+// Form
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = '✓ Solicitud enviada';
+  btn.classList.add('bg-green-600');
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.classList.remove('bg-green-600');
+    e.target.reset();
+  }, 3000);
+});
 </script>
 </body>
 </html>
