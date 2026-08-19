@@ -4,11 +4,8 @@ import sys
 path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
-# URLs absolutas desde la raíz del Static Site. Esto evita que una ruta anidada
-# cambie la resolución del asset. El sufijo v fuerza a Render/navegador a pedir
-# la versión nueva después de cada corrección.
-LOGO = "/assets/logo-gestion-administrativa.webp?v=4"
-MAURO = "/assets/mauro-montalvo-traje.webp?v=4"
+LOGO = "/assets/logo-gestion-administrativa.webp?v=5"
+MAURO = "/assets/mauro-montalvo-traje.png?v=5"
 
 replacements = {
     "navy: { 50:'#f0f4fa', 100:'#dbe4f2', 200:'#b7c9e5', 300:'#8baad3', 400:'#5f89b8', 500:'#3d6a9a', 600:'#2d5280', 700:'#1a3a5c', 800:'#0f2744', 900:'#0a1f38', 950:'#061428' },": "navy: { 50:'#edf7ff', 100:'#d8efff', 200:'#b6e2ff', 300:'#7bcfff', 400:'#2fafe7', 500:'#0b88c9', 600:'#066ca8', 700:'#045083', 800:'#063b68', 900:'#032f57', 950:'#02255d' },",
@@ -76,4 +73,4 @@ if verified.count(LOGO) < 2:
     raise SystemExit("Verificación del logotipo falló")
 if verified.count(MAURO) < 2:
     raise SystemExit("Verificación de la imagen de Mauro falló")
-print("OK: logo y fotos de Mauro apuntan a /assets con cache-busting.")
+print("OK: logo y foto de Mauro apuntan a assets locales PNG/WebP.")
