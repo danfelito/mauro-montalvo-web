@@ -1,0 +1,1 @@
+Brand assets are copied directly from /assets during Render build. Do not reconstruct production images from source/assets chunks.
