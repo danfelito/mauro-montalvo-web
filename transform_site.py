@@ -4,8 +4,9 @@ import sys
 path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
-LOGO = "/assets/logo-gestion-administrativa.webp?v=5"
-MAURO = "/assets/mauro-montalvo-traje.png?v=5"
+LOGO = "/assets/logo-gestion-administrativa.webp?v=6"
+MAURO_TRAJE = "/assets/mauro-montalvo-traje.png?v=6"
+MAURO_SIN_TRAJE = "/assets/mauro-1.webp?v=6"
 
 replacements = {
     "navy: { 50:'#f0f4fa', 100:'#dbe4f2', 200:'#b7c9e5', 300:'#8baad3', 400:'#5f89b8', 500:'#3d6a9a', 600:'#2d5280', 700:'#1a3a5c', 800:'#0f2744', 900:'#0a1f38', 950:'#061428' },": "navy: { 50:'#edf7ff', 100:'#d8efff', 200:'#b6e2ff', 300:'#7bcfff', 400:'#2fafe7', 500:'#0b88c9', 600:'#066ca8', 700:'#045083', 800:'#063b68', 900:'#032f57', 950:'#02255d' },",
@@ -52,7 +53,7 @@ s = s.replace('class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center jus
 s = s.replace('class="hidden lg:flex items-center gap-8"', 'class="hidden lg:flex items-center gap-5 xl:gap-7"', 1)
 
 profile_old = 'src="assets/mauro-1.webp" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover"'
-profile_new = f'src="{MAURO}" alt="Mauro J. Montalvo" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover object-center"'
+profile_new = f'src="{MAURO_TRAJE}" alt="Mauro J. Montalvo" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover object-center"'
 if profile_old not in s:
     raise SystemExit("No se encontró la imagen original de perfil")
 s = s.replace(profile_old, profile_new, 1)
@@ -60,7 +61,7 @@ s = s.replace(profile_old, profile_new, 1)
 solution_old = 'https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1af5d26b1-b565-4604-a34a-93dac1048264.png'
 if solution_old not in s:
     raise SystemExit("No se encontró la imagen corporativa original")
-s = s.replace(solution_old, MAURO, 1)
+s = s.replace(solution_old, MAURO_SIN_TRAJE, 1)
 
 footer_mark = '<div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>'
 s = s.replace(footer_mark, f'<img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-16 h-16 object-contain flex-shrink-0" />')
@@ -71,6 +72,8 @@ path.write_text(s, encoding="utf-8")
 verified = path.read_text(encoding="utf-8")
 if verified.count(LOGO) < 2:
     raise SystemExit("Verificación del logotipo falló")
-if verified.count(MAURO) < 2:
-    raise SystemExit("Verificación de la imagen de Mauro falló")
-print("OK: logo y foto de Mauro apuntan a assets locales PNG/WebP.")
+if verified.count(MAURO_TRAJE) < 1:
+    raise SystemExit("Verificación de la imagen de Mauro con traje falló")
+if verified.count(MAURO_SIN_TRAJE) < 1:
+    raise SystemExit("Verificación de la imagen de Mauro sin traje falló")
+print("OK: logo, foto con traje y foto sin traje apuntan a assets locales.")
