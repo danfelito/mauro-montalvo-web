@@ -1,12 +1,18 @@
 from pathlib import Path
+import base64
 import sys
 
 path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
-# Assets servidos directamente desde GitHub para evitar rutas rotas en Render.
-LOGO = "https://raw.githubusercontent.com/danfelito/mauro-montalvo-web/main/assets/logo-gestion-administrativa.webp"
-MAURO = "https://raw.githubusercontent.com/danfelito/mauro-montalvo-web/main/assets/mauro-montalvo-traje.webp"
+# Incrustar los recursos directamente en el HTML para que Render no dependa
+# de rutas de assets ni de raw.githubusercontent.com.
+def data_uri(file_path: str, mime: str) -> str:
+    raw = Path(file_path).read_bytes()
+    return f"data:{mime};base64," + base64.b64encode(raw).decode("ascii")
+
+LOGO = data_uri("assets/logo-gestion-administrativa.webp", "image/webp")
+MAURO = data_uri("assets/mauro-montalvo-traje.webp", "image/webp")
 
 # Paleta tomada del logotipo: azul marino, azul/cian, turquesa y naranja.
 replacements = {
@@ -53,7 +59,6 @@ s = s.replace(header_old, header_new, 1)
 s = s.replace('class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between"', 'class="max-w-7xl mx-auto px-6 lg:px-10 py-1 flex items-center justify-between"', 1)
 s = s.replace('class="hidden lg:flex items-center gap-8"', 'class="hidden lg:flex items-center gap-5 xl:gap-7"', 1)
 
-# Sustituir tanto la foto de perfil como la imagen corporativa del señor con traje.
 profile_old = 'src="assets/mauro-1.webp" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover"'
 profile_new = f'src="{MAURO}" alt="Mauro J. Montalvo" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover object-center"'
 if profile_old not in s:
@@ -72,10 +77,8 @@ s = s.replace('Representación Empresarial Veracruz', 'Gestión Administrativa V
 path.write_text(s, encoding="utf-8")
 
 verified = path.read_text(encoding="utf-8")
-if verified.count(LOGO) < 2:
-    raise SystemExit("Verificación del logotipo falló")
-if verified.count(MAURO) < 2:
-    raise SystemExit("Verificación de la imagen de Mauro falló")
+if verified.count('data:image/webp;base64,') < 4:
+    raise SystemExit("Verificación de imágenes incrustadas falló")
 if "gold: '#ff6b00'" not in verified or "950:'#02255d'" not in verified:
     raise SystemExit("Verificación de paleta de colores falló")
-print("Aplicados y verificados: logo grande, paleta del logotipo y foto real de Mauro con URLs absolutas.")
+print("OK: logo y dos fotos de Mauro incrustados directamente en el HTML.")
