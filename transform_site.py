@@ -1,20 +1,13 @@
 from pathlib import Path
-import base64
 import sys
 
 path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
-# Incrustar los recursos directamente en el HTML para que Render no dependa
-# de rutas de assets ni de raw.githubusercontent.com.
-def data_uri(file_path: str, mime: str) -> str:
-    raw = Path(file_path).read_bytes()
-    return f"data:{mime};base64," + base64.b64encode(raw).decode("ascii")
+# Assets reales del sitio. Render publica dist/ y build_static.sh copia assets/ a dist/assets/.
+LOGO = "assets/logo-gestion-administrativa.webp"
+MAURO = "assets/mauro-montalvo-traje.webp"
 
-LOGO = data_uri("assets/logo-gestion-administrativa.webp", "image/webp")
-MAURO = data_uri("assets/mauro-montalvo-traje.webp", "image/webp")
-
-# Paleta tomada del logotipo: azul marino, azul/cian, turquesa y naranja.
 replacements = {
     "navy: { 50:'#f0f4fa', 100:'#dbe4f2', 200:'#b7c9e5', 300:'#8baad3', 400:'#5f89b8', 500:'#3d6a9a', 600:'#2d5280', 700:'#1a3a5c', 800:'#0f2744', 900:'#0a1f38', 950:'#061428' },": "navy: { 50:'#edf7ff', 100:'#d8efff', 200:'#b6e2ff', 300:'#7bcfff', 400:'#2fafe7', 500:'#0b88c9', 600:'#066ca8', 700:'#045083', 800:'#063b68', 900:'#032f57', 950:'#02255d' },",
     "steel: { 50:'#f8fafc', 100:'#f1f5f9', 200:'#e2e8f0', 300:'#cbd5e1', 400:'#94a3b8', 500:'#64748b', 600:'#475569', 700:'#334155', 800:'#1e293b', 900:'#0f172a' },": "steel: { 50:'#f4fbfc', 100:'#e5f5f7', 200:'#c9e8ec', 300:'#9bd3da', 400:'#60b4c1', 500:'#2e8e9c', 600:'#146d7b', 700:'#0b5865', 800:'#084652', 900:'#063943' },",
@@ -77,8 +70,10 @@ s = s.replace('Representación Empresarial Veracruz', 'Gestión Administrativa V
 path.write_text(s, encoding="utf-8")
 
 verified = path.read_text(encoding="utf-8")
-if verified.count('data:image/webp;base64,') < 4:
-    raise SystemExit("Verificación de imágenes incrustadas falló")
+if verified.count(LOGO) < 2:
+    raise SystemExit("Verificación del logotipo falló")
+if verified.count(MAURO) < 2:
+    raise SystemExit("Verificación de la imagen de Mauro falló")
 if "gold: '#ff6b00'" not in verified or "950:'#02255d'" not in verified:
     raise SystemExit("Verificación de paleta de colores falló")
-print("OK: logo y dos fotos de Mauro incrustados directamente en el HTML.")
+print("OK: logo y fotos de Mauro usan assets locales del sitio.")
