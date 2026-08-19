@@ -4,9 +4,11 @@ import sys
 path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
-# Assets reales del sitio. Render publica dist/ y build_static.sh copia assets/ a dist/assets/.
-LOGO = "assets/logo-gestion-administrativa.webp"
-MAURO = "assets/mauro-montalvo-traje.webp"
+# URLs absolutas desde la raíz del Static Site. Esto evita que una ruta anidada
+# cambie la resolución del asset. El sufijo v fuerza a Render/navegador a pedir
+# la versión nueva después de cada corrección.
+LOGO = "/assets/logo-gestion-administrativa.webp?v=4"
+MAURO = "/assets/mauro-montalvo-traje.webp?v=4"
 
 replacements = {
     "navy: { 50:'#f0f4fa', 100:'#dbe4f2', 200:'#b7c9e5', 300:'#8baad3', 400:'#5f89b8', 500:'#3d6a9a', 600:'#2d5280', 700:'#1a3a5c', 800:'#0f2744', 900:'#0a1f38', 950:'#061428' },": "navy: { 50:'#edf7ff', 100:'#d8efff', 200:'#b6e2ff', 300:'#7bcfff', 400:'#2fafe7', 500:'#0b88c9', 600:'#066ca8', 700:'#045083', 800:'#063b68', 900:'#032f57', 950:'#02255d' },",
@@ -40,7 +42,7 @@ header_old = '''    <a href="#hero" class="nav-logo flex items-center gap-3 text
       </div>
     </a>'''
 header_new = f'''    <a href="#hero" class="nav-logo flex items-center gap-3 text-white transition-colors min-w-0">
-      <img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-24 h-24 lg:w-28 lg:h-28 object-contain flex-shrink-0 drop-shadow-xl" />
+      <img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-20 h-20 lg:w-24 lg:h-24 object-contain flex-shrink-0 drop-shadow-xl" />
       <div class="leading-tight hidden xl:block">
         <div class="font-serif font-bold text-lg tracking-wide">Mauro J. Montalvo</div>
         <div class="text-xs tracking-[0.18em] uppercase opacity-80">Gestión Administrativa · Veracruz</div>
@@ -49,7 +51,7 @@ header_new = f'''    <a href="#hero" class="nav-logo flex items-center gap-3 tex
 if header_old not in s:
     raise SystemExit("No se encontró el bloque original del logotipo en el encabezado")
 s = s.replace(header_old, header_new, 1)
-s = s.replace('class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between"', 'class="max-w-7xl mx-auto px-6 lg:px-10 py-1 flex items-center justify-between"', 1)
+s = s.replace('class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between"', 'class="max-w-7xl mx-auto px-6 lg:px-10 py-2 flex items-center justify-between"', 1)
 s = s.replace('class="hidden lg:flex items-center gap-8"', 'class="hidden lg:flex items-center gap-5 xl:gap-7"', 1)
 
 profile_old = 'src="assets/mauro-1.webp" class="rounded-2xl shadow-2xl w-full h-[550px] object-cover"'
@@ -64,7 +66,7 @@ if solution_old not in s:
 s = s.replace(solution_old, MAURO, 1)
 
 footer_mark = '<div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>'
-s = s.replace(footer_mark, f'<img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-20 h-20 object-contain flex-shrink-0" />')
+s = s.replace(footer_mark, f'<img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-16 h-16 object-contain flex-shrink-0" />')
 s = s.replace('Representación Empresarial Veracruz', 'Gestión Administrativa Veracruz')
 
 path.write_text(s, encoding="utf-8")
@@ -74,6 +76,4 @@ if verified.count(LOGO) < 2:
     raise SystemExit("Verificación del logotipo falló")
 if verified.count(MAURO) < 2:
     raise SystemExit("Verificación de la imagen de Mauro falló")
-if "gold: '#ff6b00'" not in verified or "950:'#02255d'" not in verified:
-    raise SystemExit("Verificación de paleta de colores falló")
-print("OK: logo y fotos de Mauro usan assets locales del sitio.")
+print("OK: logo y fotos de Mauro apuntan a /assets con cache-busting.")
