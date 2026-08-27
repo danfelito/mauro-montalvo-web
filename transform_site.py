@@ -5,7 +5,7 @@ path = Path(sys.argv[1] if len(sys.argv) > 1 else "dist/index.html")
 s = path.read_text(encoding="utf-8")
 
 LOGO = "/assets/logo-gestion-administrativa.webp?v=6"
-MAURO_TRAJE = "/assets/mauro-montalvo-traje.png?v=6"
+MAURO_TRAJE = "/assets/mauro-montalvo-traje.webp?v=7"
 MAURO_SIN_TRAJE = "/assets/mauro-1.webp?v=6"
 
 replacements = {
