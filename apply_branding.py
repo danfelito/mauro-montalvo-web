@@ -4,7 +4,7 @@ path = Path("dist/index.html")
 html = path.read_text(encoding="utf-8")
 
 old_mark = '<div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>'
-new_logo = '<img src="assets/logo-gestion.webp" alt="Gestión Administrativa Veracruz" class="w-12 h-12 rounded-full object-contain bg-white/95 p-0.5 shadow-sm flex-shrink-0">'
+new_logo = '<img src="assets/logo-gestion.webp" alt="Gestión Administrativa en El Puerto de Veracruz" class="w-12 h-12 rounded-full object-contain bg-white/95 p-0.5 shadow-sm flex-shrink-0">'
 
 solution_old = 'https://image.qwenlm.ai/public_source/215c317f-9eac-48d7-88a5-901add41d64d/1af5d26b1-b565-4604-a34a-93dac1048264.png'
 solution_new = 'assets/mauro-traje.webp'
