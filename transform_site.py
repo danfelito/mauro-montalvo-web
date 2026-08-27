@@ -36,14 +36,14 @@ header_old = '''    <a href="#hero" class="nav-logo flex items-center gap-3 text
       <div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>
       <div class="leading-tight">
         <div class="font-serif font-bold text-lg tracking-wide">Mauro J. Montalvo</div>
-        <div class="text-xs tracking-[0.2em] uppercase opacity-80">Representación Empresarial · Veracruz</div>
+        <div class="text-xs tracking-[0.2em] uppercase opacity-80">Representación Empresarial · El Puerto de Veracruz</div>
       </div>
     </a>'''
 header_new = f'''    <a href="#hero" class="nav-logo flex items-center gap-3 text-white transition-colors min-w-0">
-      <img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-20 h-20 lg:w-24 lg:h-24 object-contain flex-shrink-0 drop-shadow-xl" />
+      <img src="{LOGO}" alt="Gestión Administrativa en El Puerto de Veracruz" class="w-20 h-20 lg:w-24 lg:h-24 object-contain flex-shrink-0 drop-shadow-xl" />
       <div class="leading-tight hidden xl:block">
         <div class="font-serif font-bold text-lg tracking-wide">Mauro J. Montalvo</div>
-        <div class="text-xs tracking-[0.18em] uppercase opacity-80">Gestión Administrativa · Veracruz</div>
+        <div class="text-xs tracking-[0.18em] uppercase opacity-80">Gestión Administrativa · El Puerto de Veracruz</div>
       </div>
     </a>'''
 if header_old not in s:
@@ -64,8 +64,8 @@ if solution_old not in s:
 s = s.replace(solution_old, MAURO_SIN_TRAJE, 1)
 
 footer_mark = '<div class="w-10 h-10 rounded-lg bg-gold flex items-center justify-center font-serif font-bold text-navy-950 text-xl">M</div>'
-s = s.replace(footer_mark, f'<img src="{LOGO}" alt="Gestión Administrativa Veracruz" class="w-16 h-16 object-contain flex-shrink-0" />')
-s = s.replace('Representación Empresarial Veracruz', 'Gestión Administrativa Veracruz')
+s = s.replace(footer_mark, f'<img src="{LOGO}" alt="Gestión Administrativa en El Puerto de Veracruz" class="w-16 h-16 object-contain flex-shrink-0" />')
+s = s.replace('Representación Empresarial El Puerto de Veracruz', 'Gestión Administrativa · El Puerto de Veracruz')
 
 path.write_text(s, encoding="utf-8")
 
