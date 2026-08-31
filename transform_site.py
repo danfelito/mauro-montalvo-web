@@ -28,6 +28,19 @@ replacements = {
     "rgba(6,20,40,0.7)": "rgba(2,37,93,0.74)",
     "rgba(10,31,56,0.08)": "rgba(0,74,128,0.10)",
     "rgba(10,31,56,0.12)": "rgba(0,74,128,0.14)",
+
+    # Voz institucional y textos comerciales
+    "Mauro realiza visita, recopila información y entrega reporte con evidencias.": "Realizamos visita, recopilamos la información requerida y entregamos un reporte detallado con evidencias.",
+    "Decisión informada sin desplazar personal propio a El Puerto de Veracruz.": "Recibe un reporte completo y preciso para que pueda tomar decisiones informadas, sin desplazar personal propio al Puerto de Veracruz.",
+    "Cada empresa accede a un portal privado donde ve expedientes, avances, documentos, evidencias, tareas e informes. Ya no contratan simplemente a Mauro: contratan un <strong class=\"text-gold\">servicio profesional de representación con trazabilidad</strong>.": "Cada empresa cuenta con acceso a un portal privado donde puede consultar en tiempo real su expediente, avances, documentos, evidencias e informes, manteniendo toda la información organizada y disponible en un solo lugar.<br><br>Ofrecemos un <strong class=\"text-gold\">servicio profesional de representación con transparencia, trazabilidad y respaldo en cada etapa</strong>.",
+    "Solicite su orientación inicial gratuita.": "Solicita tu orientación inicial gratuita.",
+    "Videollamada de 15 minutos para entender su necesidad. Mauro recibe toda la información antes de la llamada.": "Agenda una videollamada de 15 minutos para conocer tu situación y entender tus necesidades. Antes de la llamada, nosotros recibiremos la información que nos proporciones.",
+    "<h3 class=\"font-serif text-2xl font-bold text-navy-900 mb-2\">Solicitar orientación inicial</h3>": "<h3 class=\"font-serif text-2xl font-bold text-navy-900 mb-2\">¿Necesitas orientación? Contáctanos</h3>",
+    "Cuéntenos lo que sepa. Todos los campos son opcionales y puede enviar el formulario incompleto.": "Puedes enviar la información aunque no completes todos los campos. La información proporcionada nos ayudará a brindarte una mejor orientación.",
+    "Al responder, Mauro podrá proporcionarle un consejo inicial claro y práctico relacionado con su trámite o problema.": "Nuestro equipo analizará la información que compartas para ofrecerte una guía inicial precisa y orientada a tu caso o trámite.",
+    "Cerramos y documentamos": "Cierre y documentación final",
+    "Hola Mauro, solicito orientación inicial para una gestión en El Puerto de Veracruz.": "Hola, solicito orientación inicial para una gestión en El Puerto de Veracruz.",
+    "Agradecería un consejo inicial claro y práctico relacionado con este trámite o problema.": "Agradecería una guía inicial clara y práctica relacionada con este trámite o problema.",
 }
 for old, new in replacements.items():
     s = s.replace(old, new)
@@ -76,4 +89,4 @@ if verified.count(MAURO_TRAJE) < 1:
     raise SystemExit("Verificación de la imagen de Mauro con traje falló")
 if verified.count(MAURO_SIN_TRAJE) < 1:
     raise SystemExit("Verificación de la imagen de Mauro sin traje falló")
-print("OK: logo, foto con traje y foto sin traje apuntan a assets locales.")
+print("OK: branding y textos institucionales actualizados.")
