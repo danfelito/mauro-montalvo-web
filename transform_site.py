@@ -28,6 +28,9 @@ replacements = {
     "rgba(10,31,56,0.08)": "rgba(0,74,128,0.10)",
     "rgba(10,31,56,0.12)": "rgba(0,74,128,0.14)",
 
+    # Encabezado principal
+    "Su empresa en El Puerto de Veracruz,<br>\n        <span class=\"text-gold italic\">sin necesidad de estar</span> en El Puerto de Veracruz, México.": "Gestión, Representación y su empresa,<br>\n        en el Puerto de Veracruz, México.<br>\n        <span class=\"text-gold italic\">Sin necesidad de viajar.</span>",
+
     # Voz institucional y textos comerciales
     "Mauro realiza visita, recopila información y entrega reporte con evidencias.": "Realizamos visita, recopilamos la información requerida y entregamos un reporte detallado con evidencias.",
     "Decisión informada sin desplazar personal propio a El Puerto de Veracruz.": "Recibe un reporte completo y preciso para que pueda tomar decisiones informadas, sin desplazar personal propio al Puerto de Veracruz.",
@@ -40,6 +43,10 @@ replacements = {
     "Cerramos y documentamos": "Cierre y documentación final",
     "Hola Mauro, solicito orientación inicial para una gestión en El Puerto de Veracruz.": "Hola, solicito orientación inicial para una gestión en El Puerto de Veracruz.",
     "Agradecería un consejo inicial claro y práctico relacionado con este trámite o problema.": "Agradecería una guía inicial clara y práctica relacionada con este trámite o problema.",
+
+    # Contacto: teléfono y WhatsApp son números distintos
+    "<li><a href=\"#contacto\" class=\"hover:text-white\">WhatsApp: 229 111 2817</a></li>": "<li><a href=\"tel:+522291112817\" class=\"hover:text-white\">Teléfono: 229 111 2817</a></li>\n          <li><a href=\"https://wa.me/522291333325\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"hover:text-white\">WhatsApp: 229 133 3325</a></li>",
+    "https://wa.me/522291112817?text=": "https://wa.me/522291333325?text=",
 }
 for old, new in replacements.items():
     s = s.replace(old, new)
@@ -75,4 +82,8 @@ if verified.count(LOGO) < 2:
     raise SystemExit("Verificación del logotipo falló")
 if verified.count(MAURO_TRAJE) < 1:
     raise SystemExit("Verificación de la imagen de Mauro con traje falló")
-print("OK: branding y textos institucionales actualizados.")
+if "522291333325" not in verified:
+    raise SystemExit("Verificación del nuevo WhatsApp falló")
+if "Gestión, Representación y su empresa" not in verified:
+    raise SystemExit("Verificación del nuevo encabezado falló")
+print("OK: branding, encabezado, textos institucionales y contactos actualizados.")
