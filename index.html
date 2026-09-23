@@ -1021,6 +1021,10 @@ tailwind.config = {
               <button id="sendWhatsApp" type="button" class="bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-semibold transition">Enviar por WhatsApp</button>
               <button id="sendEmail" type="button" class="btn-navy px-6 py-4 rounded-lg font-semibold">Enviar por correo</button>
             </div>
+            <label class="flex items-start gap-3 text-sm text-steel-600">
+              <input id="crmConsent" type="checkbox" class="mt-1 accent-orange-500">
+              <span>Autorizo que mis datos de contacto se incorporen al sistema de seguimiento de Mauro para atender esta solicitud. Las respuestas detalladas del caso no se enviarán automáticamente al CRM.</span>
+            </label>
             <p id="formStatus" class="text-steel-500 text-xs text-center" aria-live="polite">Se abrirá WhatsApp o su aplicación de correo con la información capturada.</p>
           </div>
         </form>
@@ -1175,17 +1179,48 @@ function noteDispatch(channel) {
   formStatus.textContent = `Se abrió ${channel} con la información disponible. Revise el mensaje y confirme el envío.`;
 }
 
+async function sendLeadToCRM() {
+  if (!document.getElementById('crmConsent').checked) return;
+  const payload = {
+    name: valueOf('contactName'),
+    company: valueOf('contactCompany'),
+    phone: valueOf('contactPhone'),
+    email: valueOf('contactEmail')
+  };
+  if (!payload.name && !payload.phone && !payload.email) {
+    formStatus.textContent = 'Para registrar el seguimiento, proporcione al menos su nombre, teléfono o correo.';
+    return;
+  }
+
+  formStatus.textContent = 'Registrando sus datos de contacto de forma segura…';
+  try {
+    const response = await fetch('https://mauro-montalvo-ghl-api.onrender.com/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      keepalive: true
+    });
+    if (!response.ok) throw new Error('crm_unavailable');
+    formStatus.textContent = 'Sus datos de contacto quedaron registrados para seguimiento. Revise y confirme el envío en el canal elegido.';
+  } catch {
+    formStatus.textContent = 'No se pudo registrar el seguimiento ahora. Su mensaje sigue preparado en el canal elegido; confirme el envío allí.';
+  }
+}
+
 document.getElementById('sendWhatsApp').addEventListener('click', () => {
-  const url = `https://wa.me/522291112817?text=${encodeURIComponent(buildCaseMessage())}`;
+  const url = `https://wa.me/522291333325?text=${encodeURIComponent(buildCaseMessage())}`;
   window.open(url, '_blank', 'noopener,noreferrer');
-  noteDispatch('WhatsApp');
+  if (document.getElementById('crmConsent').checked) void sendLeadToCRM();
+  else noteDispatch('WhatsApp');
 });
 
 document.getElementById('sendEmail').addEventListener('click', () => {
   const name = valueOf('contactName');
   const subject = name ? `Solicitud de orientación inicial - ${name}` : 'Solicitud de orientación inicial';
-  window.location.href = `mailto:montalvoasesores@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildCaseMessage())}`;
-  noteDispatch('su aplicación de correo');
+  const mailto = `mailto:montalvoasesores@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildCaseMessage())}`;
+  window.open(mailto, '_blank', 'noopener,noreferrer');
+  if (document.getElementById('crmConsent').checked) void sendLeadToCRM();
+  else noteDispatch('su aplicación de correo');
 });
 
 contactForm.addEventListener('submit', (event) => {
