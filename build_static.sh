@@ -5,6 +5,7 @@ rm -rf dist
 mkdir -p dist/assets
 
 cp index.html dist/index.html
+cp aviso-de-privacidad.html dist/aviso-de-privacidad.html
 cp compartir.html dist/compartir.html
 cp -R assets/. dist/assets/
 
