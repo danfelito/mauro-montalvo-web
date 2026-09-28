@@ -1157,7 +1157,25 @@ function buildCaseMessage() {
 
   if (contactData.length) {
     lines.push('', 'DATOS DE CONTACTO');
-    contactData.forEach(([label, valufunction noteDispatch(channel) {
+    contactData.forEach(([label, value]) => lines.push(`${label}: ${value}`));
+  }
+
+  const answers = questions
+    .map(([id, label]) => [label, valueOf(id)])
+    .filter(([, value]) => value);
+
+  if (answers.length) {
+    lines.push('', 'INFORMACIÓN DEL CASO');
+    answers.forEach(([label, value]) => lines.push(`${label}:`, value, ''));
+  } else {
+    lines.push('', 'Aún no tengo todos los datos, pero deseo recibir orientación.');
+  }
+
+  lines.push('Agradecería un consejo inicial claro y práctico relacionado con este trámite o problema.');
+  return lines.join('\n');
+}
+
+function noteDispatch(channel) {
   formStatus.textContent = `Se abrió ${channel} con la información disponible. Revise el mensaje y confirme el envío.`;
 }
 
@@ -1173,7 +1191,6 @@ async function sendLeadToCRM() {
     formStatus.textContent = 'Para registrar el seguimiento, proporcione al menos su nombre, teléfono o correo.';
     return;
   }
-
   formStatus.textContent = 'Registrando sus datos de contacto de forma segura…';
   try {
     const response = await fetch('https://mauro-montalvo-ghl-api.onrender.com/api/leads', {
@@ -1203,17 +1220,6 @@ document.getElementById('sendEmail').addEventListener('click', () => {
   window.open(mailto, '_blank', 'noopener,noreferrer');
   if (document.getElementById('crmConsent').checked) void sendLeadToCRM();
   else noteDispatch('su aplicación de correo');
-});
-
-contactForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  document.getElementById('sendWhatsApp').click();
-});
-.getElementById('sendEmail').addEventListener('click', () => {
-  const name = valueOf('contactName');
-  const subject = name ? `Solicitud de orientación inicial - ${name}` : 'Solicitud de orientación inicial';
-  window.location.href = `mailto:montalvoasesores@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildCaseMessage())}`;
-  noteDispatch('su aplicación de correo');
 });
 
 contactForm.addEventListener('submit', (event) => {
